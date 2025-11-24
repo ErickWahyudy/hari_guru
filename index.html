@@ -47,8 +47,6 @@
   /* flower stage center */
   .flower-stage{position:absolute;left:50%;top:30%;transform:translateX(-50%);width:280px;height:320px;pointer-events:none;display:none;z-index:70}
 
-  /* === UPGRADED FLOWER VISUAL (Level 2) === */
-
   /* GOLD PARTICLES */
   .gold-dust {
     position: absolute;
@@ -147,7 +145,7 @@
     <p class="lead">Terima kasih atas pengabdian dan kasih sayangmu. Buka pesannya, lalu berikan kado spesial.</p>
 
     <div>
-      <button id="btnOpen" class="btn btn-primary">Buka Pesan</button>
+      <button id="btnOpen" class="btn btn-primary">Buka Pesan</button> <br> <br><br>
       <button id="btnGift" class="btn btn-gift" style="display:none">🎁 Buka Kado</button>
     </div>
 
@@ -187,11 +185,9 @@
   </div>
 </div>
 
-<!-- Audio: autoplay + gesture fallback -->
 <audio id="bgm" src="https://feeldreams.github.io/terbangjauh.mp3" loop></audio>
 
 <script>
-// Play audio with fallback (browsers block autoplay sometimes)
 const bgm = document.getElementById('bgm');
 function tryPlayAudio(){ bgm.play().catch(()=>{/* will play after user interaction */}); }
 tryPlayAudio();
@@ -223,11 +219,11 @@ btnOpen.addEventListener('click', ()=>{
   .type('Klik \"Buka Kado\" untuk kejutan spesial 🎁')
   .go();
   // show gift button after typing
-  setTimeout(()=>{ btnGift.style.display='inline-block'; }, 7200);
-  
+  setTimeout(()=>{ btnGift.style.display='inline-block'; }, 13000);
+
 });
 
-// Gift opening sequence (type C: box wiggle -> lid open -> ribbon flies -> confetti -> flower grow)
+// Gift box opening sequence
 btnGift.addEventListener('click', ()=>{
   try{ bgm.play(); }catch(e){}
   btnGift.disabled=true; btnGift.style.opacity=.6;
@@ -302,7 +298,7 @@ function createConfettiBurst(){
   }
 }
 
-/* GOLD PARTICLE SPAWNER (Level 2) */
+// Golden dust particle spawning
 function spawnGoldenDust(){
   for (let i = 0; i < 36; i++) {
     const d = document.createElement("div");
@@ -345,13 +341,12 @@ function startFlowerAnimation(){
   const aura = document.querySelector('.bloom-aura');
   const flare = document.querySelector('.flare-center');
 
-  // style leaves shapes with JS (kept, but sizes adjusted earlier via CSS)
+
   leafL.style.width='64px'; leafL.style.height='36px';
   leafL.style.borderRadius='40px 12px 40px 12px';
   leafR.style.width='64px'; leafR.style.height='36px';
   leafR.style.borderRadius='12px 40px 12px 40px';
 
-  // petals base shape (set rotation variable)
   [p1,p2,p3,p4,p5].forEach((el,i)=>{
     el.style.setProperty('--rot', (i*72)+'deg');
     el.style.left='50%';
@@ -371,7 +366,6 @@ function startFlowerAnimation(){
   setTimeout(()=>{ p4.classList.add('grow'); }, 3200);
   setTimeout(()=>{ p5.classList.add('grow'); }, 3400);
 
-  // after petals opened: aura, flare, golden dust, breathing
   setTimeout(()=>{
     // show aura + flare gently
     if(aura) { aura.style.transition = 'opacity .8s ease'; aura.style.opacity = 1; }
@@ -399,7 +393,6 @@ function startFlowerAnimation(){
     ],{duration:1000,iterations:2});
   }, 3800);
 
-  // final visual polish: add subtle glow to petals
   setTimeout(()=>{
     [p1,p2,p3,p4,p5].forEach(el=>{
       el.style.boxShadow='0 18px 40px rgba(255,120,160,.25)';
