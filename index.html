@@ -177,8 +177,8 @@ document.getElementById('modalNickname').addEventListener('hide.bs.modal', funct
   }
 });
 
-btnOpen.addEventListener('click', ()=>{
-  try{ bgm.play(); }catch(e){}
+btnOpen.addEventListener('click', () => {
+  try { bgm.play(); } catch(e) {}
   btnOpen.disabled = true;
   btnOpen.style.opacity = .6;
   btnOpen.style.display = "none";
@@ -186,19 +186,22 @@ btnOpen.addEventListener('click', ()=>{
   message.innerHTML = '';
 
   new TypeIt(message, {
-    speed:45,
-    lifeLike:true,
-    cursor:true
+    speed: 45,
+    lifeLike: true,
+    cursor: true,
   })
-  .type(`Terima kasih ${nickname}, telah menjadi inspirasi dan penuntun kami.`)
-  .pause(700).break()
-  .type('Setiap ilmu dan nasehatmu menjadi bekal yang tak ternilai.')
-  .pause(700).break()
-  .type('Semoga selalu sehat, bahagia, dan penuh semangat mengajar.')
-  .pause(800).break()
-  .type('Klik \"Buka Kado\" untuk kejutan spesial 🎁')
-  .go();
-  setTimeout(()=>{ btnGift.style.display='inline-block'; }, 13000);
+    .type(`Terima kasih ${nickname}, telah menjadi inspirasi dan penuntun kami.`)
+    .pause(700).break()
+    .type('Setiap ilmu dan nasehatmu menjadi bekal yang tak ternilai.')
+    .pause(700).break()
+    .type('Semoga selalu sehat, bahagia, dan penuh semangat mengajar.')
+    .pause(700).break()
+    .type('<span style="display:block;font-size:1.35em;font-weight:700;color:#ff4d6d;margin-bottom:10px;">Guru Hebat, Indonesia Kuat</span>')
+    .pause(700).break()
+    .type('<span style="display:block;margin-top:18px;">Klik "Buka Kado" untuk kejutan spesial 🎁</span>')
+    .go();
+
+  setTimeout(() => { btnGift.style.display = 'inline-block'; }, 18000);
 });
 
 btnGift.addEventListener('click', ()=>{
